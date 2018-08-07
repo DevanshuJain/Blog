@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<h1>WELLCOME TO BLOG APPLICATION</h1>
+<h1>Listing blogs</h1>
+<%= link_to 'Create New blog', new_blog_path %>
+<table>
+ <tr>
+   <th>Blog names</th>
+   <th colspan="4"></th>
+ </tr>
+
+ <% @blog.each do |blog| %>
+   <tr>
+    <% if blog.user == current_user %>
+     <td><%= blog.blogname %></td>
+     <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+     <td><%= link_to 'Destroy', blog_path(blog),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %></td>
+     <% else %>
+     <td><%= blog.blogname %></td>
+     <th colspan="5"></th>
+     <% end %>
+   </tr>
+ <% end %>
+</table>
+</body>
+</html>
